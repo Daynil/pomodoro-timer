@@ -1,1 +1,6 @@
+# Don't add devdependencies
 node_modules
+
+# Don't add compiled files
+*.js
+*.js.map
