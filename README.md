@@ -14,8 +14,8 @@ A simple gulpfile is used to automatically compile .ts files to .js and serve th
 the browser. Gulp will watch for changes and automatically recompile .ts files and refresh
 browsers, as well as injecting .css changes without refresh.
 
-Angular version 2.0.0-alpha.40
-index.html: Entry point for app, loads required items, app hook in body.
-app.ts: Base angular component bootstraped.
-gulp.config.js: Identifies the location of all .ts files to auto-compile.
+Angular version 2.0.0-alpha.40 <br>
+index.html: Entry point for app, loads required items, app hook in body. <br>
+app.ts: Base angular component bootstraped. <br>
+gulp.config.js: Identifies the location of all .ts files to auto-compile. <br>
 gulpfile.js: Simple gulpfile, start with $ gulp serve.
