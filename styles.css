@@ -1,0 +1,74 @@
+.page-wrapper {
+    padding-top: 1px;
+    min-height: 100vh;
+    background-color: hsl(77, 2%, 22%);
+    font-family: 'Ubuntu';
+    text-align: center;
+}
+
+#title-div {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#title {
+    color: aliceblue;
+    font-size: 60px;
+}
+
+#settings-div {
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.settings-sliders {
+    display: inline-block;
+    color: aliceblue;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#session-slider, #break-slider {
+    display: inline-block;
+    width: 70%;
+}
+
+.no-select {
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.input-boxes {
+    display: inline-block;
+	text-align: center;
+    border-style: dotted;
+    border-top: 0px;
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom-color: aliceblue;
+    color: aliceblue;
+    width: 25px;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 4px;
+    background-color: hsl(77, 2%, 22%);
+} 
+
+.increment-button {
+    color: hsl(3, 65%, 52%);
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.increment-button:hover {
+    color: hsl(3, 65%, 70%);
+}
+
+#timer-div {
+    color: aliceblue;
+    font-size: 60px;
+    margin-top: 80px;
+} 

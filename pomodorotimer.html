@@ -1,0 +1,28 @@
+<div class="page-wrapper">
+    <div id="title-div">
+        <h1 id="title">Pomodoro Timer</h1>
+    </div>
+    <div id="settings-div">
+        <div class="row settings-sliders">
+            <div class="col-md-6 no-select" id="session-length-div">
+                <h3>Session</h3>
+                <i class="fa fa-minus-circle fa-lg increment-button" #sessiondecr
+                id="session-decr" (click)="decrLen(sessiondecr)"></i>
+                <input type="text" class="input-boxes" id="session-length" [value]="sessionLen">
+                <i class="fa fa-plus-circle fa-lg increment-button" #sessionincr
+                id="session-incr" (click)="incrLen(sessionincr)"></i>
+            </div>
+            <div class="col-md-6 no-select" id="break-length-div">
+                <h3>Break</h3>
+                <i class="fa fa-minus-circle fa-lg increment-button" #breakdecr
+				id="break-decr" (click)="decrLen(breakdecr)"></i>
+                <input type="text" class="input-boxes" id="break-length" [value]="breakLen">
+                <i class="fa fa-plus-circle fa-lg increment-button" #breakincr
+				id="break-incr" (click)="incrLen(breakincr)"></i>
+            </div>
+        </div>
+    </div>
+    <div id="timer-div">
+        {{ currTimer }}
+    </div>
+</div>
