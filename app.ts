@@ -1,4 +1,6 @@
 import {Component, View, bootstrap} from 'angular2/angular2';
+import {CanvasTimer} from './canvastimer'
+
 
 // Annotation section
 @Component({
@@ -6,7 +8,8 @@ import {Component, View, bootstrap} from 'angular2/angular2';
 })
 @View({
 	templateUrl: 'pomodorotimer.html',
-	styleUrls: ['styles.css']
+	styleUrls: ['styles.css'],
+	directives: [CanvasTimer]
 })
 // Component controller
 class PomodoroApp {
@@ -21,6 +24,15 @@ class PomodoroApp {
 		this.breakLen = 5;
 		this.currTimer = defSessionLen;
 		this.isActive = false;
+	}
+	
+	sessLenTyped(newSess) {
+		this.sessionLen = newSess;
+		this.resetTimer();
+	}
+	
+	breakLenTyped(newBreak) {
+		this.breakLen = newBreak;
 	}
 
 	incrLen(sendingInput) {
@@ -69,4 +81,8 @@ class PomodoroApp {
 	}
 }
 
-bootstrap(PomodoroApp);
+bootstrap(PomodoroApp)
+	.then(
+		success => console.log(success),
+		error => console.log(error)
+	);

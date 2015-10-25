@@ -68,6 +68,7 @@
 }
 
 #timer-div {
+	margin: 0 auto;
     color: aliceblue;
     font-size: 60px;
     margin-top: 80px;
