@@ -68,8 +68,22 @@
 }
 
 #timer-div {
-	margin: 0 auto;
+	position: relative;
     color: aliceblue;
+	padding-top: 1px;
     font-size: 60px;
     margin-top: 80px;
-} 
+	margin-right: 300px;
+}
+
+#timer-canvas {
+	position: absolute;
+	border: 1px solid aliceblue;
+}
+
+#timer-text {
+	position: absolute;
+	text-align: center;
+	line-height: 300px;
+	width: 300px;
+}

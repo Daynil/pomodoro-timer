@@ -40,4 +40,11 @@ export class CanvasService {
 		this.canvasCtx.lineWidth = this.options.lineWidth;
 		this.canvasCtx.stroke();
 	}
+	
+	clearCanvas() {
+		this.canvasCtx.save();
+		this.canvasCtx.setTransform(1, 0, 0, 1, 0, 0);
+		this.canvasCtx.clearRect(0, 0, this.options.size, this.options.size);
+		this.canvasCtx.restore();
+	}
 }

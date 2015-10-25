@@ -24,5 +24,8 @@
             </div>
         </div>
     </div>
-	<canvas-timer [curr-timer]="currTimer" [starting-timer]="sessionLen" (click)="toggleTimer()"></canvas-timer>
+	<div id="timer-div">
+		<canvas id="timer-canvas" height="300" width="300"></canvas>
+		<span id="timer-text" (click)="toggleTimer()">{{ currTimer }}</span>
+	</div>
 </div>

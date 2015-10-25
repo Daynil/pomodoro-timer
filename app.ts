@@ -1,15 +1,14 @@
 import {Component, View, bootstrap} from 'angular2/angular2';
-import {CanvasTimer} from './canvastimer'
-
+import {CanvasService} from './canvasservice'
 
 // Annotation section
 @Component({
-	selector: 'pomodoro-app'
+	selector: 'pomodoro-app',
+	bindings: [CanvasService]
 })
 @View({
 	templateUrl: 'pomodorotimer.html',
-	styleUrls: ['styles.css'],
-	directives: [CanvasTimer]
+	styleUrls: ['styles.css']
 })
 // Component controller
 class PomodoroApp {
@@ -17,13 +16,16 @@ class PomodoroApp {
 	breakLen: number;
 	currTimer: number;
 	isActive: boolean;
+	timerCanvas;
 
-	constructor() {
+	constructor(public canvasService: CanvasService) {
 		var defSessionLen = 25;
 		this.sessionLen = defSessionLen;
 		this.breakLen = 5;
 		this.currTimer = defSessionLen;
 		this.isActive = false;
+		this.timerCanvas = document.getElementById("timer-canvas");
+		this.canvasService.initializeCanvas(this.timerCanvas);
 	}
 	
 	sessLenTyped(newSess) {
@@ -69,6 +71,7 @@ class PomodoroApp {
 			setTimeout( () => {
 				if (this.currTimer > 0 && this.isActive) {
 					this.currTimer--;
+					this.canvasService.drawCircle(this.currTimer, this.sessionLen);
 					this.incrementTimer();
 				}
 			}, 1000);
@@ -78,6 +81,7 @@ class PomodoroApp {
 	resetTimer() {
 		this.isActive = false;
 		this.currTimer = this.sessionLen;
+		this.canvasService.clearCanvas();
 	}
 }
 
