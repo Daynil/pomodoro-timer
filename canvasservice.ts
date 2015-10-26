@@ -12,7 +12,7 @@ export class CanvasService {
 		this.options = {
 			percent: 0,
 			size: 300,
-			lineWidth: 15,
+			lineWidth: 5,
 			rotate: 0
 		};
 	}
@@ -35,7 +35,7 @@ export class CanvasService {
 		var endAngle = this.getEndAngle(currTimer, startingTimer);
 		this.canvasCtx.beginPath();
 		this.canvasCtx.arc(0, 0, this.radius, 0, endAngle, false);
-		this.canvasCtx.strokeStyle = '#ffffff';
+		this.canvasCtx.strokeStyle = "hsl(3, 65%, 52%)";
 		this.canvasCtx.lineCap = 'round';
 		this.canvasCtx.lineWidth = this.options.lineWidth;
 		this.canvasCtx.stroke();
