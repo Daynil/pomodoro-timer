@@ -20,7 +20,11 @@ gulp.task('serve', ['compile-ts'], function() {
 });
 
 // Make sure the compile-ts task completes before reloading browsers
-gulp.task('ts-watch', ['compile-ts'], browserSync.reload);
+gulp.task('ts-watch', ['compile-ts', 'reload']);
+
+gulp.task('reload', ['compile-ts'], function() {
+	browserSync.reload();
+});
 
 gulp.task('compile-ts', function() {
 	var sourceTsFiles = [
@@ -33,7 +37,9 @@ gulp.task('compile-ts', function() {
 		.pipe(sourcemaps.init())
 		.pipe(tsc(tsProject));
 	
-	return tsResult
+	var stream = tsResult
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(config.tsOutputPath));
+		
+	return stream;
 });

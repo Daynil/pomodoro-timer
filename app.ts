@@ -71,7 +71,7 @@ class PomodoroApp {
 			setTimeout( () => {
 				if (this.currTimer > 0 && this.isActive) {
 					this.currTimer--;
-					this.canvasService.drawCircle(this.currTimer, this.sessionLen);
+					this.canvasService.drawTimer(this.currTimer, this.sessionLen);
 					this.incrementTimer();
 				}
 			}, 1000);
