@@ -82,6 +82,7 @@ class PomodoroApp {
 		this.isActive = false;
 		this.currTimer = this.sessionLen;
 		this.canvasService.clearCanvas();
+		this.canvasService.resetAnimationHelper();
 	}
 }
 

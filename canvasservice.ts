@@ -55,7 +55,6 @@ export class CanvasService {
 		this.canvasCtx.lineCap = 'round';
 		this.canvasCtx.lineWidth = this.options.lineWidth;
 		this.canvasCtx.stroke();
-		this.canvasCtx.beginPath();
 	}
 	
 	drawTimer(currTimer, startingTimer) {
@@ -95,7 +94,16 @@ export class CanvasService {
 		
 		if (this.animationHelper.framePoints.length > 0) {
 			requestAnimationFrame(this.animateCurve.bind(this));
+		} else {
+			//this.animationHelper.startPoint = null;
 		}
+	}
+	
+	resetAnimationHelper() {
+		this.animationHelper.startPoint = null;
+		this.animationHelper.endPoint = 0;
+		this.animationHelper.framePoints = [];
+		this.animationHelper.lastPoint = 0;
 	}
 	
 	clearCanvas() {
