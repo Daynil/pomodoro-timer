@@ -1,6 +1,7 @@
 .page-wrapper {
     padding-top: 1px;
-    min-height: 100vh;
+    min-height: 632px;
+	height: 100vh;
     background-color: hsl(77, 2%, 22%);
     font-family: 'Ubuntu';
     text-align: center;
@@ -83,6 +84,7 @@
 #timer-text {
 	position: absolute;
 	text-align: center;
-	line-height: 300px;
+	line-height: 125px;
+	margin-top: 25px;
 	width: 300px;
 }

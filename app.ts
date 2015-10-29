@@ -16,6 +16,8 @@ class PomodoroApp {
 	breakLen: number;
 	currTimer: number;
 	isActive: boolean;
+	isBreak: boolean;
+	sessBreakTxt: string;
 	timerCanvas;
 
 	constructor(public canvasService: CanvasService) {
@@ -24,13 +26,15 @@ class PomodoroApp {
 		this.breakLen = 5;
 		this.currTimer = defSessionLen;
 		this.isActive = false;
+		this.isBreak = false;
+		this.sessBreakTxt = "Session";
 		this.timerCanvas = document.getElementById("timer-canvas");
 		this.canvasService.initializeCanvas(this.timerCanvas);
 	}
 	
 	sessLenTyped(newSess) {
 		this.sessionLen = newSess;
-		this.resetTimer();
+		this.resetTimer(false, true);
 	}
 	
 	breakLenTyped(newBreak) {
@@ -40,7 +44,7 @@ class PomodoroApp {
 	incrLen(sendingInput) {
 		if (sendingInput.id === 'session-incr') {
 			this.sessionLen++;
-			this.resetTimer();
+			this.resetTimer(false, true);
 		} else {
 			this.breakLen++;
 		}
@@ -50,7 +54,7 @@ class PomodoroApp {
 		if (sendingInput.id === 'session-decr') {
 			if (this.sessionLen > 1) {
 				this.sessionLen--;
-				this.resetTimer();
+				this.resetTimer(false, true);
 			}
 		} else {
 			if (this.breakLen > 1) {
@@ -67,22 +71,35 @@ class PomodoroApp {
 	}
 	
 	incrementTimer() {
-		if (this.currTimer > 0 && this.isActive) {
+		if (this.isActive) {
 			setTimeout( () => {
 				if (this.currTimer > 0 && this.isActive) {
+					let startingTimer = this.isBreak ? this.breakLen : this.sessionLen;
 					this.currTimer--;
-					this.canvasService.drawTimer(this.currTimer, this.sessionLen);
+					this.canvasService.drawTimer(this.currTimer, startingTimer);
+					this.incrementTimer();
+				} else if (this.currTimer === 0) {
+					this.isBreak = !this.isBreak;
+					this.resetTimer(this.isBreak, false);
 					this.incrementTimer();
 				}
 			}, 1000);
 		}
 	}
 	
-	resetTimer() {
-		this.isActive = false;
-		this.currTimer = this.sessionLen;
+	resetTimer(isBreak: boolean, refresh: boolean) {
 		this.canvasService.clearCanvas();
 		this.canvasService.resetAnimationHelper();
+		if (isBreak) {
+			this.currTimer = this.breakLen;
+			this.sessBreakTxt = "Break!";
+		} else {
+			this.currTimer = this.sessionLen;
+			this.sessBreakTxt = "Session";
+		}
+		if (refresh) {
+			this.isActive = false;
+		}
 	}
 }
 

@@ -26,6 +26,9 @@
     </div>
 	<div id="timer-div">
 		<canvas id="timer-canvas" height="300" width="300"></canvas>
-		<span id="timer-text" (click)="toggleTimer()">{{ currTimer }}</span>
+		<span id="timer-text" (click)="toggleTimer()">
+			<p>{{ sessBreakTxt }}</p>
+			<p>{{ currTimer }}</p>
+		</span>
 	</div>
 </div>
