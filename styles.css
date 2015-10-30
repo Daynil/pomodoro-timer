@@ -1,6 +1,6 @@
 .page-wrapper {
     padding-top: 1px;
-    min-height: 632px;
+    min-height: 685px;
 	height: 100vh;
     background-color: hsl(77, 2%, 22%);
     font-family: 'Ubuntu';
@@ -74,10 +74,11 @@
 	padding-top: 1px;
     font-size: 60px;
     margin-top: 80px;
-	margin-right: 300px;
+	margin-right: 350px;
+	cursor: pointer;
 }
 
-#timer-canvas {
+#timer-canvas, #glow-canvas {
 	position: absolute;
 }
 
@@ -85,6 +86,6 @@
 	position: absolute;
 	text-align: center;
 	line-height: 125px;
-	margin-top: 25px;
-	width: 300px;
+	margin-top: 35px;
+	width: 350px;
 }

@@ -25,10 +25,12 @@
         </div>
     </div>
 	<div id="timer-div">
-		<canvas id="timer-canvas" height="300" width="300"></canvas>
+		<canvas id="timer-canvas" height="350" width="350"></canvas>
+		<canvas id="glow-canvas" height="350" width="350"></canvas>
 		<span id="timer-text" (click)="toggleTimer()">
 			<p>{{ sessBreakTxt }}</p>
-			<p>{{ currTimer }}</p>
+			<i class="increment-button" [ng-class]="setPlayClasses()" style="font-size: 0.7em"></i>
+			<p>{{ currTimerDisplay }}</p>
 		</span>
 	</div>
 </div>

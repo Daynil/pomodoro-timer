@@ -1,5 +1,6 @@
 export class CanvasService {
 	canvasCtx: any;
+	glowCanvasCtx: any;
 	options: {
 		percent: number,
 		size: number,
@@ -13,21 +14,29 @@ export class CanvasService {
 		framePoints: [],
 		lastPoint: 0
 	}
+	glowAnimator = {
+		animating: false,
+		fading: false,
+		transparency: 0.01
+	}
 	
 	constructor() {
 		this.options = {
 			percent: 0,
-			size: 300,
+			size: 350,
 			lineWidth: 5,
 			rotate: 0
 		};
 	}
 	
-	initializeCanvas(canvas) {
+	initializeCanvas(canvas, glowCanvas) {
 		console.log("initializeCanvas called here");
 		this.canvasCtx = canvas.getContext('2d');
 		this.canvasCtx.translate(this.options.size / 2, this.options.size / 2);
 		this.canvasCtx.rotate((-1 / 2 + this.options.rotate / 180) * Math.PI);
+		this.glowCanvasCtx = glowCanvas.getContext('2d');
+		this.glowCanvasCtx.translate(this.options.size / 2, this.options.size /2);
+		this.glowCanvasCtx.rotate((-1 / 2 + this.options.rotate / 180) * Math.PI);
 		this.radius = (this.options.size - this.options.lineWidth) /2;
 		this.drawBase();
 	}
@@ -48,13 +57,34 @@ export class CanvasService {
 	}
 	
 	drawBase() {
-		console.log("drawbase called here");
 		this.canvasCtx.beginPath();
 		this.canvasCtx.arc(0, 0, this.radius, 0, (Math.PI/180 * 360), false);
 		this.canvasCtx.strokeStyle = "hsla(3, 65%, 52%, 0.15)";
 		this.canvasCtx.lineCap = 'round';
 		this.canvasCtx.lineWidth = this.options.lineWidth;
 		this.canvasCtx.stroke();
+	}
+	
+	glowCircle() {
+		if (this.glowAnimator.animating) {
+			console.log(this.glowAnimator.transparency);
+			this.clearCanvas(this.glowCanvasCtx);
+			this.glowCanvasCtx.beginPath();
+			this.glowCanvasCtx.arc(0, 0, this.radius, 0, 360, false);
+			this.glowCanvasCtx.fillStyle = `hsla(0, 100%, 100%, ${this.glowAnimator.transparency}`;
+			this.glowCanvasCtx.fill();
+			if (this.glowAnimator.transparency < 0.1 && !this.glowAnimator.fading) {
+				this.glowAnimator.transparency += 0.01;
+				requestAnimationFrame(this.glowCircle.bind(this));
+			} else if (this.glowAnimator.transparency > 0) {
+				if (!this.glowAnimator.fading) this.glowAnimator.fading = true;
+				this.glowAnimator.transparency -= 0.01;
+				requestAnimationFrame(this.glowCircle.bind(this));
+			} else {
+				this.glowAnimator.animating = false;
+				this.glowAnimator.fading = false;
+			}
+		}
 	}
 	
 	drawTimer(currTimer, startingTimer) {
@@ -106,11 +136,13 @@ export class CanvasService {
 		this.animationHelper.lastPoint = 0;
 	}
 	
-	clearCanvas() {
-		this.canvasCtx.save();
-		this.canvasCtx.setTransform(1, 0, 0, 1, 0, 0);
-		this.canvasCtx.clearRect(0, 0, this.options.size, this.options.size);
-		this.canvasCtx.restore();
-		this.drawBase();
+	clearCanvas(canvasCtxRef) {
+		canvasCtxRef.save();
+		canvasCtxRef.setTransform(1, 0, 0, 1, 0, 0);
+		canvasCtxRef.clearRect(0, 0, this.options.size, this.options.size);
+		canvasCtxRef.restore();
+		if (canvasCtxRef === this.canvasCtx) {
+			this.drawBase();
+		}
 	}
 }
