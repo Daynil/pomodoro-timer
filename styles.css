@@ -1,7 +1,9 @@
 .page-wrapper {
     padding-top: 1px;
-    min-height: 685px;
+    min-height: 818px;
 	height: 100vh;
+	margin-bottom: -60px;
+	padding-bottom: 60px;
     background-color: hsl(77, 2%, 22%);
     font-family: 'Ubuntu';
     text-align: center;
@@ -91,22 +93,27 @@
 }
 
 #foot {
-	position: absolute;
-	bottom: 0;
+	font-family: 'Ubuntu';
+	font-size: 18px;
+	background-color: hsl(77, 2%, 22%);
+	color: aliceblue;
+	line-height: 25px;
 	width: 100%;
+	height: 60px;
+	text-align: center;
 }
 
 #foot i, #foot a {
-	color: aliceblue;
+	color: hsl(3, 65%, 70%);
 	transition: 0.6s;
 	text-decoration: none;
 }
 
-#foot:hover a, #foot:hover i {
-	color: hsl(3, 65%, 70%);
+#foot a:hover, #gh-link:hover i {
+	color: aliceblue;
 	text-decoration: none;
 }
 
 #foot i {
-	padding-left: 5;
+	padding-left: 2px;
 }
